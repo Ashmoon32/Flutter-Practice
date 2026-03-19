@@ -20,16 +20,37 @@ class ContainerDemo extends StatelessWidget {
   const ContainerDemo({super.key});
 
   @override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     home: Scaffold(
+  //       body: Center(
+  //         child: Text(
+  //           "Text on the screen",
+  //           style: TextStyle(color: Colors.amber, fontSize: 26, wordSpacing: 3),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // ch-3 : ex-2
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterailApp(
       home: Scaffold(
-        body: Center(
-          child: Text(
-            "Text on the screen",
-            style: TextStyle(color: Colors.amber, fontSize: 26, wordSpacing: 3),
-          ),
+        body: Column(
+          children: [
+            Text('Hello World!'),
+            Text('Welcome to Flutter.'),
+            Row(
+              children: [
+                Text("left:"), Text("right"),
+              ],
+            ),
+          ],
+
         ),
       ),
     );
   }
+  
 }
