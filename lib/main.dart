@@ -24,9 +24,9 @@ class ContainerDemo extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: const Text(
-            "You are the apple of My Eyes",
-            style: TextStyle(color: Colors.black, fontSize: 45, wordSpacing: 5),
+          child: Text(
+            "Text on the screen",
+            style: TextStyle(color: Colors.amber, fontSize: 26, wordSpacing: 3),
           ),
         ),
       ),
