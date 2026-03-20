@@ -20,6 +20,7 @@ class ContainerDemo extends StatelessWidget {
   const ContainerDemo({super.key});
 
   @override
+  // ch-3 : ex-1
   // Widget build(BuildContext context) {
   //   return MaterialApp(
   //     home: Scaffold(
@@ -34,23 +35,51 @@ class ContainerDemo extends StatelessWidget {
   // }
 
   // ch-3 : ex-2
+  // Widget build(BuildContext context) {
+  //   return MaterailApp(
+  //     home: Scaffold(
+  //       body: Column(
+  //         children: [
+  //           Text('Hello World!'),
+  //           Text('Welcome to Flutter.'),
+  //           Row(
+  //             children: [
+  //               Text("left:"), Text("right"),
+  //             ],
+  //           ),
+  //         ],
+
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // ch-4 : ex--1
+
   Widget build(BuildContext context) {
-    return MaterailApp(
-      home: Scaffold(
-        body: Column(
-          children: [
-            Text('Hello World!'),
-            Text('Welcome to Flutter.'),
-            Row(
-              children: [
-                Text("left:"), Text("right"),
+    return MaterialApp(
+      home: DefaultTabController (
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.directions_car)),
+                Tab(icon: Icon(Icons.directions_transit)),
+                Tab(icon: Icon(Icons.directions_bike)),
               ],
             ),
-          ],
-
+            title: const Text("Tabs in Flutter"),
+          ),
+          body: const TabBarView(
+            children: [
+              Icon(Icons.directions_car),
+              Icon(Icons.directios_transit),
+              Icon(Icons.directions_bike),
+            ],
+          ),
         ),
       ),
     );
-  }
-  
+  },
+
 }
