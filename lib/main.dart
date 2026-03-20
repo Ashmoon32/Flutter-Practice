@@ -85,27 +85,44 @@ class ContainerDemo extends StatelessWidget {
 
   // ch-5 : ex-1
 
-  bool _isChecked = false;
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Row(
-          children: [
-            CheckBox(
-              value: _isChecked,
-              onChanged: (bool? newValue) {
-                setState(() {
-                  _isChecked : newValue!;
-                });
-              },
-            ),
-            const Text(
-              'Accept Terms and Conditions'
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // bool _isChecked = false;
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     home: Scaffold(
+  //       body: Row(
+  //         children: [
+  //           CheckBox(
+  //             value: _isChecked,
+  //             onChanged: (bool? newValue) {
+  //               setState(() {
+  //                 _isChecked = newValue!;
+  //               });
+  //             },
+  //           ),
+  //           const Text(
+  //             'Accept Terms and Conditions'
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // ch-5 : ex-2
+
+Column(
+  children: Gender.values.map(
+    (option) => RadioListTile<Gender> (
+      title: Text(option.text),
+      value: option,
+      groupValue: _selectedOption,
+      onChanged: (value) {
+        setState(() {
+          _selectedOption = value;
+        });
+      },
+    ),
+  ).toList(),
+),
 
 }
