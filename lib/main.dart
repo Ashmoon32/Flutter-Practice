@@ -59,6 +59,7 @@ class ContainerDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController (
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             bottom: const TabBar(
