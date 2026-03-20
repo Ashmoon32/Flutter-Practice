@@ -56,31 +56,56 @@ class ContainerDemo extends StatelessWidget {
 
   // ch-4 : ex--1
 
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     home: DefaultTabController (
+  //       length: 3,
+  //       child: Scaffold(
+  //         appBar: AppBar(
+  //           bottom: const TabBar(
+  //             tabs: [
+  //               Tab(icon: Icon(Icons.directions_car)),
+  //               Tab(icon: Icon(Icons.directions_transit)),
+  //               Tab(icon: Icon(Icons.directions_bike)),
+  //             ],
+  //           ),
+  //           title: const Text("Tabs in Flutter"),
+  //         ),
+  //         body: const TabBarView(
+  //           children: [
+  //             Icon(Icons.directions_car),
+  //             Icon(Icons.directios_transit),
+  //             Icon(Icons.directions_bike),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // ch-5 : ex-1
+
+  bool _isChecked = false;
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DefaultTabController (
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: const TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.directions_car)),
-                Tab(icon: Icon(Icons.directions_transit)),
-                Tab(icon: Icon(Icons.directions_bike)),
-              ],
+      home: Scaffold(
+        body: Row(
+          children: [
+            CheckBox(
+              value: _isChecked,
+              onChanged: (bool? newValue) {
+                setState(() {
+                  _isChecked : newValue!;
+                });
+              },
             ),
-            title: const Text("Tabs in Flutter"),
-          ),
-          body: const TabBarView(
-            children: [
-              Icon(Icons.directions_car),
-              Icon(Icons.directios_transit),
-              Icon(Icons.directions_bike),
-            ],
-          ),
+            const Text(
+              'Accept Terms and Conditions'
+            ),
+          ],
         ),
       ),
     );
-  },
+  }
 
 }
