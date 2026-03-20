@@ -110,19 +110,43 @@ class ContainerDemo extends StatelessWidget {
 
   // ch-5 : ex-2
 
-Column(
-  children: Gender.values.map(
-    (option) => RadioListTile<Gender> (
-      title: Text(option.text),
-      value: option,
-      groupValue: _selectedOption,
-      onChanged: (value) {
-        setState(() {
-          _selectedOption = value;
-        });
-      },
-    ),
-  ).toList(),
-),
+  // Column(
+  //   children: Gender.values.map(
+  //     (option) => RadioListTile<Gender> (
+  //       title: Text(option.text),
+  //       value: option,
+  //       groupValue: _selectedOption,
+  //       onChanged: (value) {
+  //         setState(() {
+  //           _selectedOption = value;
+  //         });
+  //       },
+  //     ),
+  //   ).toList(),
+  // ),
 
-}
+
+  // ch-5 : ex-3
+
+  bool _isDarkMode = false;
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        brightness: _isDarkMode ? Brightness.dark : Brightness.light,
+      ),
+      home: Scaffold(
+        body: SwitchListTile(
+          title: const Text("Dark Mode"),
+          value: _isDarkMode,
+          onChanged: (bool newValue) {
+            setState(() {
+              _isDarkMode = newValue;
+            });
+          },
+          activeColor: Colors.blue,
+          secondary: Icon(Icons.lightbulb),
+        ),
+      ),
+    );
+  }
+  }
