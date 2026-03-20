@@ -128,25 +128,70 @@ class ContainerDemo extends StatelessWidget {
 
   // ch-5 : ex-3
 
-  bool _isDarkMode = false;
+  // bool _isDarkMode = false;
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     theme: ThemeData(
+  //       brightness: _isDarkMode ? Brightness.dark : Brightness.light,
+  //     ),
+  //     home: Scaffold(
+  //       body: SwitchListTile(
+  //         title: const Text("Dark Mode"),
+  //         value: _isDarkMode,
+  //         onChanged: (bool newValue) {
+  //           setState(() {
+  //             _isDarkMode = newValue;
+  //           });
+  //         },
+  //         activeColor: Colors.blue,
+  //         secondary: Icon(Icons.lightbulb),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // ch-5: ex-4
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  string _info = "";
+  
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        brightness: _isDarkMode ? Brightness.dark : Brightness.light,
-      ),
       home: Scaffold(
-        body: SwitchListTile(
-          title: const Text("Dark Mode"),
-          value: _isDarkMode,
-          onChanged: (bool newValue) {
-            setState(() {
-              _isDarkMode = newValue;
-            });
-          },
-          activeColor: Colors.blue,
-          secondary: Icon(Icons.lightbulb),
+        body: Column(
+          children: [
+            TextField(
+              controller: _name,
+              decoration: InputDecoration(
+                labelText: "Name",
+                hintText: "Enter Name",
+                suffixIcon: Icon(Icons.person),
+              ),
+            ),
+            TextField(
+              controller: _password,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Password",
+                hintText: "Enter password",
+                suffixIcon: Icon(Icons.lock),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _info = "Name: ${_name.text} , Password: ${_password.text}.";
+                });
+              },
+              child: Text("Save"),
+            ),
+            Text(_info),
+          ],
         ),
       ),
     );
   }
+
+
+
   }
