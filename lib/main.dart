@@ -277,10 +277,35 @@ class ContainerDemo extends StatelessWidget {
   //   }
   // }
 
-  
+  // ch-6 : ex-3
+  class VideoDemo extends StatefulWidget {
+    _controller = VideoPlayerController.networkUrl('https://www.example.com/video.mp4');
 
+    // for local file
+    // _controller = VideoPlayerController.file('file_path/video.mp4');
 
+    // for project folder 
+    // _controller = VideoPlayerController.asset('../assets/video.mp4');
 
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(title: const Text('Play/Pause Videos')),
+          body: Center(
+            child: VideoPlayer(_controller),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _controller.value.isPlaying ? _controller.pause() : _controller.play();
+                });
+              },
+              child: Text(_controller.value.isPlaying ? 'Pause' : 'Play'),
+            ),
+          ),
+        ),
+      );
+    }
+  }
 
 
 
