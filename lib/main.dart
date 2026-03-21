@@ -217,19 +217,72 @@ class ContainerDemo extends StatelessWidget {
     runApp(const ImageDemo());
   }
 
-  class ImageDemo extends StatelessWidget {
+  class ImageDemo extendss StatelessWidget {
     Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(title: const Text("Image Demo")),
-        body: Image.network('https://www.example.com/sample.jpg'),
+      return Scafffold(
+        appBar: AppBar(title: const Text('Image Demo')),
+        body: Image.network('https://www.example.com/abc.jpg'),
+        
+        // if image is from local file
+        // body: Image.file('/storage/image.jpg'),
 
-        // if from local file
-        // body: Image.file('/storage/sample.jpg),
-
-        // if from project folder
-        // body: Image.asset('../assets/abc.jpg),
+        // if image is from prject folder
+        // body: Image.asset('../assets/sample.jpg'),
       );
     }
   }
+
+  // ch-6 : ex-2
+
+  void main() {
+    runApp(const ImageDemo());
+  }
+
+  class ImageDemo extends StatelessWidget {
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(title: const Text('Fade In Image')),
+          body: Center(
+            Center(child: CircularProgressIndicator()),
+            child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: 'https://www.example.com/abc.jpg',
+            ),
+          ),
+        ),
+      );
+    }
+  }
+
+  // ch-6 : ex-2
+
+  // void main() {
+  //   runApp(const ImageDemo());
+  // }
+
+  // class ImageDemo extends StatelessWidget {
+  //   Widget build(BuildContext context) {
+  //     return MaterialApp(
+  //       home: Scaffold(
+  //         appBar: AppBar(title: const Text('Fade In Image')),
+  //         body: Center(
+  //           child: FadeInImage.assetNetwork(
+  //             placeholder: '../assets/lodd.gif',
+  //             image: 'https://www.example.com/abd.jpeg',
+  //           ),
+  //         ),
+  //       )
+  //     );
+  //   }
+  // }
+
+  
+
+
+
+
+
+
 
   }
