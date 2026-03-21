@@ -213,47 +213,47 @@ class ContainerDemo extends StatelessWidget {
   // ),
 
   // ch-6 : ex-1
-  void main() {
-    runApp(const ImageDemo());
-  }
+  // void main() {
+  //   runApp(const ImageDemo());
+  // }
 
-  class ImageDemo extendss StatelessWidget {
-    Widget build(BuildContext context) {
-      return Scafffold(
-        appBar: AppBar(title: const Text('Image Demo')),
-        body: Image.network('https://www.example.com/abc.jpg'),
+  // class ImageDemo extendss StatelessWidget {
+  //   Widget build(BuildContext context) {
+  //     return Scafffold(
+  //       appBar: AppBar(title: const Text('Image Demo')),
+  //       body: Image.network('https://www.example.com/abc.jpg'),
         
-        // if image is from local file
-        // body: Image.file('/storage/image.jpg'),
+  //       // if image is from local file
+  //       // body: Image.file('/storage/image.jpg'),
 
-        // if image is from prject folder
-        // body: Image.asset('../assets/sample.jpg'),
-      );
-    }
-  }
+  //       // if image is from prject folder
+  //       // body: Image.asset('../assets/sample.jpg'),
+  //     );
+  //   }
+  // }
 
   // ch-6 : ex-2
 
-  void main() {
-    runApp(const ImageDemo());
-  }
+  // void main() {
+  //   runApp(const ImageDemo());
+  // }
 
-  class ImageDemo extends StatelessWidget {
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(title: const Text('Fade In Image')),
-          body: Center(
-            Center(child: CircularProgressIndicator()),
-            child: FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: 'https://www.example.com/abc.jpg',
-            ),
-          ),
-        ),
-      );
-    }
-  }
+  // class ImageDemo extends StatelessWidget {
+  //   Widget build(BuildContext context) {
+  //     return MaterialApp(
+  //       home: Scaffold(
+  //         appBar: AppBar(title: const Text('Fade In Image')),
+  //         body: Center(
+  //           Center(child: CircularProgressIndicator()),
+  //           child: FadeInImage.memoryNetwork(
+  //             placeholder: kTransparentImage,
+  //             image: 'https://www.example.com/abc.jpg',
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   }
+  // }
 
   // ch-6 : ex-2
 
@@ -278,36 +278,83 @@ class ContainerDemo extends StatelessWidget {
   // }
 
   // ch-6 : ex-3
-  class VideoDemo extends StatefulWidget {
-    _controller = VideoPlayerController.networkUrl('https://www.example.com/video.mp4');
+  // class VideoDemo extends StatefulWidget {
+  //   _controller = VideoPlayerController.networkUrl('https://www.example.com/video.mp4');
 
-    // for local file
-    // _controller = VideoPlayerController.file('file_path/video.mp4');
+  //   // for local file
+  //   // _controller = VideoPlayerController.file('file_path/video.mp4');
 
-    // for project folder 
-    // _controller = VideoPlayerController.asset('../assets/video.mp4');
+  //   // for project folder 
+  //   // _controller = VideoPlayerController.asset('../assets/video.mp4');
 
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(title: const Text('Play/Pause Videos')),
-          body: Center(
-            child: VideoPlayer(_controller),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _controller.value.isPlaying ? _controller.pause() : _controller.play();
-                });
-              },
-              child: Text(_controller.value.isPlaying ? 'Pause' : 'Play'),
-            ),
+  //   Widget build(BuildContext context) {
+  //     return MaterialApp(
+  //       home: Scaffold(
+  //         appBar: AppBar(title: const Text('Play/Pause Videos')),
+  //         body: Center(
+  //           child: VideoPlayer(_controller),
+  //           ElevatedButton(
+  //             onPressed: () {
+  //               setState(() {
+  //                 _controller.value.isPlaying ? _controller.pause() : _controller.play();
+  //               });
+  //             },
+  //             child: Text(_controller.value.isPlaying ? 'Pause' : 'Play'),
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   }
+  // }
+
+  // ch-7: ex-1
+  bool b = false;
+  void _changeMode() {
+    setState(() {
+      b = !b;
+    });
+  },
+
+  children: [
+    AnimatedContainer(
+      color: b ? Colors.teaAccent : Colors.blueAccent,
+      height: b ? 300.0 : 100.0,
+      duration: Duration(seconds: 1),
+      child: Center(
+        child: Text(
+          "Top",
+          style: TextStyle(
+            color: b ? Colors.black : Colors.white,
+            fontSize: 30.0,
+            fontWeight: FontWeight.w200,
           ),
+          textAlign: TextAlign.center,
         ),
-      );
-    }
-  }
+      ),
+    ),
 
+    AnimatedContainer(
+      color: b ? Colors.redAccent : Colors.orangeAccent,
+      height: b ? 100.0 : 300.0,
+      duration: const Duration(seconds: 1), // you missed const
+      child: Center(
+        child: Text(
+          "Bottom",
+          style: TextStyle(
+            color: b ? Colors.black : Colors.white,
+            fontSize: 30.0,
+            fontWeight: FontWeight.w200,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    ),
+  ],
 
+  floatingActionButton: FloatingActionButton(
+    onPressed: _changeMode,
+    child: const Icon(Icons.change_circle),
+  ),
 
 
   }
