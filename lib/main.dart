@@ -420,40 +420,91 @@ class ContainerDemo extends StatelessWidget {
 
   // ch-7 : ex-3
 
-  import 'package:flutter/material.dart';
-  import 'package:flutter animated splash/flutter animated splash';
+  // import 'package:flutter/material.dart';
+  // import 'package:flutter animated splash/flutter animated splash';
 
-  return MaterialApp(
-    theme: ThemeData(brightness: Brightness.dark),
-    home: AnimatedSplash(
-      backgroundColor: Colors.black,
-      type: Transition.fade,
-      curve: Curves.fastEaseInToSlowEaseOut,
-      durationInSeconds: 3,
-      navigator: const HomePage(),
-      child: const FlutterLogo(
-        color: Colors.blue,
-        size: 200,
-      ),
-    ),
-  );
+  // return MaterialApp(
+  //   theme: ThemeData(brightness: Brightness.dark),
+  //   home: AnimatedSplash(
+  //     backgroundColor: Colors.black,
+  //     type: Transition.fade,
+  //     curve: Curves.fastEaseInToSlowEaseOut,
+  //     durationInSeconds: 3,
+  //     navigator: const HomePage(),
+  //     child: const FlutterLogo(
+  //       color: Colors.blue,
+  //       size: 200,
+  //     ),
+  //   ),
+  // );
 
-  return Scaffold(
-    appBar: AppBar(title: const Text('My Application'),
-    backgroundColor: Colors.blue,
-    foregroundColor: Colors.white,
-    automaticallyImplyLeading: false,
-    ),
-    body: const Center(
-      child:  Text(
-        "Welcome To Flutter",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 30,
-        ),
-      ),
-    ),
-  );
+  // return Scaffold(
+  //   appBar: AppBar(title: const Text('My Application'),
+  //   backgroundColor: Colors.blue,
+  //   foregroundColor: Colors.white,
+  //   automaticallyImplyLeading: false,
+  //   ),
+  //   body: const Center(
+  //     child:  Text(
+  //       "Welcome To Flutter",
+  //       style: TextStyle(
+  //         color: Colors.white,
+  //         fontSize: 30,
+  //       ),
+  //     ),
+  //   ),
+  // );
 
+
+  // ch-8: ex-1
+  
+
+  class DatabaseHelper {
+    static final DatabaseHelper instance = DatabaseHelper._init();
+    static Database? _database;
+
+    _database = await _initDB('items.db');
+
+
+    CREATE TABLE items (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      description TEXT NOT NULL
+    );
+
+    // CREATE 
+    Future<int>insertItems(Map<String, dynamic>row) async {
+      final db = await instance.database;
+      return await db.insert('items', row);
+    }
+
+    // READ
+    Future<List<Map<String, dynamic>>>getItems() async {
+      final db = await instance.database;
+      return await db.query('items');
+    }
+
+    // UPDATE
+    Future<int>updateItem(Map<String, dynamic>row) async {
+      final db = await instance.database;
+      int id = row['id'];
+      return await db.update(
+        'items',
+        'row',
+        where: 'id = ?',
+        whereArgs: [id],             
+      );
+    }
+
+    // DELETE
+    Future<int>deleteItem(int id) async {
+      final db = await instance.database;
+      return await db.delete(
+        'items',
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+    }
+  }
 
   }
