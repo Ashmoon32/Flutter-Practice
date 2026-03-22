@@ -308,53 +308,111 @@ class ContainerDemo extends StatelessWidget {
   // }
 
   // ch-7: ex-1
-  bool b = false;
-  void _changeMode() {
-    setState(() {
-      b = !b;
-    });
-  },
+  // bool b = false;
+  // void _changeMode() {
+  //   setState(() {
+  //     b = !b;
+  //   });
+  // },
 
-  children: [
-    AnimatedContainer(
-      color: b ? Colors.teaAccent : Colors.blueAccent,
-      height: b ? 300.0 : 100.0,
-      duration: Duration(seconds: 1),
-      child: Center(
-        child: Text(
-          "Top",
-          style: TextStyle(
-            color: b ? Colors.black : Colors.white,
-            fontSize: 30.0,
-            fontWeight: FontWeight.w200,
-          ),
-          textAlign: TextAlign.center,
+  // children: [
+  //   AnimatedContainer(
+  //     color: b ? Colors.teaAccent : Colors.blueAccent,
+  //     height: b ? 300.0 : 100.0,
+  //     duration: const Duration(seconds: 1),
+  //     child: Center(
+  //       child: Text(
+  //         "Top",
+  //         style: TextStyle(
+  //           color: b ? Colors.black : Colors.white,
+  //           fontSize: 30.0,
+  //           fontWeight: FontWeight.w200,
+  //         ),
+  //         textAlign: TextAlign.center,
+  //       ),
+  //     ),
+  //   ),
+
+  //   AnimatedContainer(
+  //     color: b ? Colors.redAccent : Colors.orangeAccent,
+  //     height: b ? 100.0 : 300.0,
+  //     duration: const Duration(seconds: 1), // you missed const
+  //     child: Center(
+  //       child: Text(
+  //         "Bottom",
+  //         style: TextStyle(
+  //           color: b ? Colors.black : Colors.white,
+  //           fontSize: 30.0,
+  //           fontWeight: FontWeight.w200,
+  //         ),
+  //         textAlign: TextAlign.center,
+  //       ),
+  //     ),
+  //   ),
+  // ],
+
+  // floatingActionButton: FloatingActionButton(
+  //   onPressed: _changeMode,
+  //   child: const Icon(Icons.change_circle),
+  // ),
+
+
+  // ch-7 : ex-2
+
+  const String _imageTag = 'my-hero-image';
+
+  child: GestureDetector(
+    onTap: () {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) {
+            return const DetailScreen();
+          },
+        ),
+      );
+    },
+
+    child: Hero(
+      tag: _imageTag,
+      child: Container(
+        width: 100.0,
+        height: 100.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          color: Colors.blueAccent.shade700,
+        ),
+        child: const Icon(
+          Icons.camera_alt,
+          color: Colors.white,
+          size: 40,
         ),
       ),
     ),
+  ) ,
 
-    AnimatedContainer(
-      color: b ? Colors.redAccent : Colors.orangeAccent,
-      height: b ? 100.0 : 300.0,
-      duration: const Duration(seconds: 1), // you missed const
-      child: Center(
-        child: Text(
-          "Bottom",
-          style: TextStyle(
-            color: b ? Colors.black : Colors.white,
-            fontSize: 30.0,
-            fontWeight: FontWeight.w200,
-          ),
-          textAlign: TextAlign.center,
+
+  child: GestureDetector(
+    onTap: () {
+      Navigator.of(context).pop();
+    },
+
+    child: Hero(
+      tag: _imageTag,
+      child: Container(
+        width: 300.0,
+        height: 300.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          color: Colors.redAccent,
+        ),
+
+        child: const Icon(
+          Icons.camera_alt,
+          color: Colors.white,
+          size: 150,
         ),
       ),
     ),
-  ],
-
-  floatingActionButton: FloatingActionButton(
-    onPressed: _changeMode,
-    child: const Icon(Icons.change_circle),
   ),
-
 
   }
