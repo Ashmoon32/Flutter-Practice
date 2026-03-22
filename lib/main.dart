@@ -359,60 +359,101 @@ class ContainerDemo extends StatelessWidget {
 
   // ch-7 : ex-2
 
-  const String _imageTag = 'my-hero-image';
+  // const String _imageTag = 'my-hero-image';
 
-  child: GestureDetector(
-    onTap: () {
-      Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (BuildContext context) {
-            return const DetailScreen();
-          },
-        ),
-      );
-    },
+  // child: GestureDetector(
+  //   onTap: () {
+  //     Navigator.of(context).push(
+  //       MaterialPageRoute<void>(
+  //         builder: (BuildContext context) {
+  //           return const DetailScreen();
+  //         },
+  //       ),
+  //     );
+  //   },
 
-    child: Hero(
-      tag: _imageTag,
-      child: Container(
-        width: 100.0,
-        height: 100.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0),
-          color: Colors.blueAccent.shade700,
-        ),
-        child: const Icon(
-          Icons.camera_alt,
+  //   child: Hero(
+  //     tag: _imageTag,
+  //     child: Container(
+  //       width: 100.0,
+  //       height: 100.0,
+  //       decoration: BoxDecoration(
+  //         borderRadius: BorderRadius.circular(12.0),
+  //         color: Colors.blueAccent.shade700,
+  //       ),
+  //       child: const Icon(
+  //         Icons.camera_alt,
+  //         color: Colors.white,
+  //         size: 40,
+  //       ),
+  //     ),
+  //   ),
+  // ) ,
+
+
+  // child: GestureDetector(
+  //   onTap: () {
+  //     Navigator.of(context).pop();
+  //   },
+
+  //   child: Hero(
+  //     tag: _imageTag,
+  //     child: Container(
+  //       width: 300.0,
+  //       height: 300.0,
+  //       decoration: BoxDecoration(
+  //         borderRadius: BorderRadius.circular(20.0),
+  //         color: Colors.redAccent,
+  //       ),
+
+  //       child: const Icon(
+  //         Icons.camera_alt,
+  //         color: Colors.white,
+  //         size: 150,
+  //       ),
+  //     ),
+  //   ),
+  // ),
+
+
+
+
+  // ch-7 : ex-3
+
+  import 'package:flutter/material.dart';
+  import 'package:flutter animated splash/flutter animated splash';
+
+  return MaterialApp(
+    theme: ThemeData(brightness: Brightness.dark),
+    home: AnimatedSplash(
+      backgroundColor: Colors.black,
+      type: Transition.fade,
+      curve: Curves.fastEaseInToSlowEaseOut,
+      durationInSeconds: 3,
+      navigator: const HomePage(),
+      child: const FlutterLogo(
+        color: Colors.blue,
+        size: 200,
+      ),
+    ),
+  );
+
+  return Scaffold(
+    appBar: AppBar(title: const Text('My Application'),
+    backgroundColor: Colors.blue,
+    foregroundColor: Colors.white,
+    automaticallyImplyLeading: false,
+    ),
+    body: const Center(
+      child:  Text(
+        "Welcome To Flutter",
+        style: TextStyle(
           color: Colors.white,
-          size: 40,
+          fontSize: 30,
         ),
       ),
     ),
-  ) ,
+  );
 
-
-  child: GestureDetector(
-    onTap: () {
-      Navigator.of(context).pop();
-    },
-
-    child: Hero(
-      tag: _imageTag,
-      child: Container(
-        width: 300.0,
-        height: 300.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-          color: Colors.redAccent,
-        ),
-
-        child: const Icon(
-          Icons.camera_alt,
-          color: Colors.white,
-          size: 150,
-        ),
-      ),
-    ),
-  ),
 
   }
