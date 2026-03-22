@@ -507,4 +507,81 @@ class ContainerDemo extends StatelessWidget {
     }
   }
 
-  }
+  class _MyAppState extends State<MyApp> {
+    final DatabaseHelper _dbHelper = DatabaseHelper.instance;
+    List<Map<String, dynamic>> _items = [];
+
+    @override
+    void initState() {
+      super.initState();
+      _loadItems();
+    }
+
+    Future<void> _loadItems() async {
+      final items = await _dbHelper.getItems();
+      setState(() {
+        _items = items;
+      });
+    }
+
+    Future<void> _insertItems() async {
+      await _dbHelper.insertItems({
+        'name': 'New Item',
+        'description': 'Some description',
+      });
+      _loaditems();
+    }
+
+    Future<void> _updateItem(int id) async {
+      await _dbHelper.updateItem({
+        'id': id,
+        'name': 'Updated Item',
+        'description': 'Updated Description',
+      });
+      _loadItems();
+    }
+
+    Future<void> _deleteItem(int id) async {
+      await _dbHelper.deleteItem(id);
+      _loadItems();
+    }
+
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(title: const Text('SQLite Database Demo'),
+          ),
+          body: ListView.builder(
+            itemCount: _items.lenght,
+            itemBuilder: (context, index) {
+              final item = _items[index];
+
+              return ListTile(
+                title: Text(item['name']),
+                subtitle: Text(item['description']),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () => _updateItem(item['id']),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () => _deleteItem(item['id']),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: _addItem,
+            child: const Icon(Icons.add),
+          ),
+          ),
+        );
+    }
+}
+}
