@@ -670,35 +670,60 @@ class ContainerDemo extends StatelessWidget {
 //   }
 // }
 
-void main() {
-  runApp(const ImageDemo());
-}
+// void main() {
+//   runApp(const ImageDemo());
+// }
 
-class ImageDemo extends StatelessWidget{
+// class ImageDemo extends StatelessWidget{
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Fade In Image'),
+//       ),
+//       body: Center(
+//         const Center(child: CircularProgressIndicator()),
+//         child: FadeInImage.memoryNetwork(
+//           placeholder: kTransparentImage,
+//           image: 'https://www.example.con/abc.jpg',
+//         ),
+//       ),
+
+//       body: Center(
+//         child: FadeInImage.assetNetwork(
+//           placeholder: '../assets/lodd.gif',
+//           image: 'https://www.example.com/abc,jpg',
+//         ),
+//       ),
+
+//     );
+//   }
+// }
+
+class VideoDemo extends StatefulWidget {
+  _controller = VideoPlayerController.networkUrl("https://www.example.com/abc.mp4");
+  _controller = VideoPlayerController.file('file_path/video.mp4');
+  _controller = VideoPlayerController.asset('../assets/video.mp4');
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Fade In Image'),
-      ),
-      body: Center(
-        const Center(child: CircularProgressIndicator()),
-        child: FadeInImage.memoryNetwork(
-          placeholder: kTransparentImage,
-          image: 'https://www.example.con/abc.jpg',
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Play/Pause Video'),
+        ),
+        body: Center(
+          child: VideoPlayer(_controller),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                _controller.value.isPlaying ? _controller.pause() : _controller.play(),
+              });
+            },
+            child: Text(_controller.value.isPlaying ? 'Pause' : 'Play'),
+          ),
         ),
       ),
-
-      body: Center(
-        child: FadeInImage.assetNetwork(
-          placeholder: '../assets/lodd.gif',
-          image: 'https://www.example.com/abc,jpg',
-        ),
-      ),
-      
     );
   }
 }
-
 
 
 
