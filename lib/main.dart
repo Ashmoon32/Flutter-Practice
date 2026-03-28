@@ -459,129 +459,180 @@ class ContainerDemo extends StatelessWidget {
   // ch-8: ex-1
   
 
-  class DatabaseHelper {
-    static final DatabaseHelper instance = DatabaseHelper._init();
-    static Database? _database;
+//   class DatabaseHelper {
+//     static final DatabaseHelper instance = DatabaseHelper._init();
+//     static Database? _database;
 
-    _database = await _initDB('items.db');
+//     _database = await _initDB('items.db');
 
 
-    CREATE TABLE items (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      description TEXT NOT NULL
-    );
+//     CREATE TABLE items (
+//       id INTEGER PRIMARY KEY AUTOINCREMENT,
+//       name TEXT NOT NULL,
+//       description TEXT NOT NULL
+//     );
 
-    // CREATE 
-    Future<int>insertItems(Map<String, dynamic>row) async {
-      final db = await instance.database;
-      return await db.insert('items', row);
-    }
+//     // CREATE 
+//     Future<int>insertItems(Map<String, dynamic>row) async {
+//       final db = await instance.database;
+//       return await db.insert('items', row);
+//     }
 
-    // READ
-    Future<List<Map<String, dynamic>>>getItems() async {
-      final db = await instance.database;
-      return await db.query('items');
-    }
+//     // READ
+//     Future<List<Map<String, dynamic>>>getItems() async {
+//       final db = await instance.database;
+//       return await db.query('items');
+//     }
 
-    // UPDATE
-    Future<int>updateItem(Map<String, dynamic>row) async {
-      final db = await instance.database;
-      int id = row['id'];
-      return await db.update(
-        'items',
-        'row',
-        where: 'id = ?',
-        whereArgs: [id],             
-      );
-    }
+//     // UPDATE
+//     Future<int>updateItem(Map<String, dynamic>row) async {
+//       final db = await instance.database;
+//       int id = row['id'];
+//       return await db.update(
+//         'items',
+//         'row',
+//         where: 'id = ?',
+//         whereArgs: [id],             
+//       );
+//     }
 
-    // DELETE
-    Future<int>deleteItem(int id) async {
-      final db = await instance.database;
-      return await db.delete(
-        'items',
-        where: 'id = ?',
-        whereArgs: [id],
-      );
-    }
-  }
+//     // DELETE
+//     Future<int>deleteItem(int id) async {
+//       final db = await instance.database;
+//       return await db.delete(
+//         'items',
+//         where: 'id = ?',
+//         whereArgs: [id],
+//       );
+//     }
+//   }
 
-  class _MyAppState extends State<MyApp> {
-    final DatabaseHelper _dbHelper = DatabaseHelper.instance;
-    List<Map<String, dynamic>> _items = [];
+//   class _MyAppState extends State<MyApp> {
+//     final DatabaseHelper _dbHelper = DatabaseHelper.instance;
+//     List<Map<String, dynamic>> _items = [];
 
-    @override
-    void initState() {
-      super.initState();
-      _loadItems();
-    }
+//     @override
+//     void initState() {
+//       super.initState();
+//       _loadItems();
+//     }
 
-    Future<void> _loadItems() async {
-      final items = await _dbHelper.getItems();
-      setState(() {
-        _items = items;
-      });
-    }
+//     Future<void> _loadItems() async {
+//       final items = await _dbHelper.getItems();
+//       setState(() {
+//         _items = items;
+//       });
+//     }
 
-    Future<void> _insertItems() async {
-      await _dbHelper.insertItems({
-        'name': 'New Item',
-        'description': 'Some description',
-      });
-      _loaditems();
-    }
+//     Future<void> _insertItems() async {
+//       await _dbHelper.insertItems({
+//         'name': 'New Item',
+//         'description': 'Some description',
+//       });
+//       _loaditems();
+//     }
 
-    Future<void> _updateItem(int id) async {
-      await _dbHelper.updateItem({
-        'id': id,
-        'name': 'Updated Item',
-        'description': 'Updated Description',
-      });
-      _loadItems();
-    }
+//     Future<void> _updateItem(int id) async {
+//       await _dbHelper.updateItem({
+//         'id': id,
+//         'name': 'Updated Item',
+//         'description': 'Updated Description',
+//       });
+//       _loadItems();
+//     }
 
-    Future<void> _deleteItem(int id) async {
-      await _dbHelper.deleteItem(id);
-      _loadItems();
-    }
+//     Future<void> _deleteItem(int id) async {
+//       await _dbHelper.deleteItem(id);
+//       _loadItems();
+//     }
 
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          appBar: AppBar(title: const Text('SQLite Database Demo'),
+//     Widget build(BuildContext context) {
+//       return MaterialApp(
+//         debugShowCheckedModeBanner: false,
+//         home: Scaffold(
+//           appBar: AppBar(title: const Text('SQLite Database Demo'),
+//           ),
+//           body: ListView.builder(
+//             itemCount: _items.lenght,
+//             itemBuilder: (context, index) {
+//               final item = _items[index];
+
+//               return ListTile(
+//                 title: Text(item['name']),
+//                 subtitle: Text(item['description']),
+//                 trailing: Row(
+//                   mainAxisSize: MainAxisSize.min,
+//                   children: [
+//                     IconButton(
+//                       icon: Icon(Icons.edit),
+//                       onPressed: () => _updateItem(item['id']),
+//                     ),
+//                     IconButton(
+//                       icon: Icon(Icons.delete),
+//                       onPressed: () => _deleteItem(item['id']),
+//                     ),
+//                   ],
+//                 ),
+//               );
+//             },
+//           ),
+//           floatingActionButton: FloatingActionButton(
+//             onPressed: _addItem,
+//             child: const Icon(Icons.add),
+//           ),
+//           ),
+//         );
+//     }
+// }
+
+
+
+
+// random practice
+
+final TextEditingController _name = TextEditingController();
+final TextEditingController _password = TextEditingController();
+string _info = "";
+
+Widget build(BuildContext context) {
+  return MaterialApp(
+    home: Scaffold(
+      body: Column(
+        children: [
+          TextField(
+            controller: _name,
+            decoration: InputDecoration(
+              labelText: "Name",
+              hintText: "Enter Name",
+              suffixIcon: Icon(Icons.people),
+            ),
           ),
-          body: ListView.builder(
-            itemCount: _items.lenght,
-            itemBuilder: (context, index) {
-              final item = _items[index];
-
-              return ListTile(
-                title: Text(item['name']),
-                subtitle: Text(item['description']),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.edit),
-                      onPressed: () => _updateItem(item['id']),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.delete),
-                      onPressed: () => _deleteItem(item['id']),
-                    ),
-                  ],
-                ),
-              );
+          TextField(
+            controller: _password,
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: "Password",
+              hintText: "Enter Password",
+              suffixIcon: Icon(Icons.lock),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setStated(() {
+                _info = "Name: ${_name.text}, Password: ${_pasword.text}";
+              });
             },
+            child: Text("Save"),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: _addItem,
-            child: const Icon(Icons.add),
-          ),
-          ),
-        );
-    }
+          Text(_info),
+        ],
+      ),
+    ),
+  );
 }
+
+
+
+
+
 }
