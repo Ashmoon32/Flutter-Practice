@@ -725,53 +725,104 @@ class ContainerDemo extends StatelessWidget {
 //   }
 //  }
 
-bool b = false;
-void _changeMode() {
-  setState(() {
-    b = !b;
-  });
-}
+// bool b = false;
+// void _changeMode() {
+//   setState(() {
+//     b = !b;
+//   });
+// }
 
-children: [
-  AnimatedContainer(
-    color: b ? Colors.teaAccent : Colors.blueAccent,
-    height: b ? 300.0 : 100.0,
-    duration: const Duration(seconds: 1),
-    child: Center(
-       child: const Text(
-      'Top',
-      color: b ? Colors.black : Colors.white,
-      fontSize: 30.0,
-      fontWeight: FontWeight.w200,
+// children: [
+//   AnimatedContainer(
+//     color: b ? Colors.teaAccent : Colors.blueAccent,
+//     height: b ? 300.0 : 100.0,
+//     duration: const Duration(seconds: 1),
+//     child: Center(
+//        child: const Text(
+//       'Top',
+//       color: b ? Colors.black : Colors.white,
+//       fontSize: 30.0,
+//       fontWeight: FontWeight.w200,
+//     ),
+//     textAlign: TextAlign.center,
+//     ),
+//   ),
+
+
+//   AnimatedContainer(
+//     color: b ? Colors.redAccent : Colors.orangeAccent,
+//     height: b ? 100.0 : 300.0,
+//     duration: Duration(seconds: 1),
+//     child: Center(
+//       child: Text(
+//         'Bottom',
+//         style: TextStyle(
+//           color: b ? Colors.black : Colors.white,
+//           fontSize: 30.0,
+//           fontWeight: FontWeight.w200,
+//         ),
+//         textAlign: TextAlign.center,
+//       ),
+//     ),
+//   ),
+// ]
+
+// floatinActionButton: FloatingActionButton(
+//   onPressed: _changeMode(),
+//   child: const Icon(Icons.change_circle),
+// ),
+
+child: GestureDetector(
+  onTap: () {
+    Navigator.of(context).push(
+    MaterialPageRoute<void>(
+      builder: (BuildContext context){
+        return const DetailScreen();
+      },
     ),
-    textAlign: TextAlign.center,
-    ),
-  ),
+  );
+  },
 
-
-  AnimatedContainer(
-    color: b ? Colors.redAccent : Colors.orangeAccent,
-    height: b ? 100.0 : 300.0,
-    duration: Duration(seconds: 1),
-    child: Center(
-      child: Text(
-        'Bottom',
-        style: TextStyle(
-          color: b ? Colors.black : Colors.white,
-          fontSize: 30.0,
-          fontWeight: FontWeight.w200,
-        ),
-        textAlign: TextAlign.center,
+  child: Hero(
+    tag: _imageTag,
+    child: Container(
+      width: 100.0,
+      height: 100.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.0),
+        color: Colors.blueAccent.shape700,
+      ),
+      child: const Icon(
+        Icons.camera_alt,
+        color: Colors.white,
+        size: 40,
       ),
     ),
   ),
-]
-
-floatinActionButton: FloatingActionButton(
-  onPressed: _changeMode(),
-  child: const Icon(Icons.change_circle),
 ),
 
+child: GestureDetector(
+  onTap: () {
+    Navigator.of(context).pop();
+  },
+
+  child: Hero(
+    tag: _imageTag,
+    child: Container(
+      width: 300.0,
+      height: 300.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        color: Colors.redAccent,
+      ),
+      child: const Icon(
+        Icons.camera_alt,
+        color: Colors.white,
+        size: 150,
+      ),
+    ),
+  ),
+),
 
 
 }
