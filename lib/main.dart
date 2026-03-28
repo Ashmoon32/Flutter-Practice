@@ -590,48 +590,66 @@ class ContainerDemo extends StatelessWidget {
 
 // random practice
 
-final TextEditingController _name = TextEditingController();
-final TextEditingController _password = TextEditingController();
-string _info = "";
+// final TextEditingController _name = TextEditingController();
+// final TextEditingController _password = TextEditingController();
+// string _info = "";
 
-Widget build(BuildContext context) {
-  return MaterialApp(
-    home: Scaffold(
-      body: Column(
-        children: [
-          TextField(
-            controller: _name,
-            decoration: InputDecoration(
-              labelText: "Name",
-              hintText: "Enter Name",
-              suffixIcon: Icon(Icons.people),
-            ),
-          ),
-          TextField(
-            controller: _password,
-            obscureText: true,
-            decoration: InputDecoration(
-              labelText: "Password",
-              hintText: "Enter Password",
-              suffixIcon: Icon(Icons.lock),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              setStated(() {
-                _info = "Name: ${_name.text}, Password: ${_pasword.text}";
-              });
-            },
-            child: Text("Save"),
-          ),
-          Text(_info),
-        ],
-      ),
-    ),
-  );
-}
+// Widget build(BuildContext context) {
+//   return MaterialApp(
+//     home: Scaffold(
+//       body: Column(
+//         children: [
+//           TextField(
+//             controller: _name,
+//             decoration: InputDecoration(
+//               labelText: "Name",
+//               hintText: "Enter Name",
+//               suffixIcon: Icon(Icons.people),
+//             ),
+//           ),
+//           TextField(
+//             controller: _password,
+//             obscureText: true,
+//             decoration: InputDecoration(
+//               labelText: "Password",
+//               hintText: "Enter Password",
+//               suffixIcon: Icon(Icons.lock),
+//             ),
+//           ),
+//           ElevatedButton(
+//             onPressed: () {
+//               setStated(() {
+//                 _info = "Name: ${_name.text}, Password: ${_pasword.text}";
+//               });
+//             },
+//             child: Text("Save"),
+//           ),
+//           Text(_info),
+//         ],
+//       ),
+//     ),
+//   );
+// }
 
+// *
 
+TextFormField(
+  decoration: const InputDecoration(
+    hintText: 'Email',
+    prefixIcon: Icon(Icons.email),
+  ),
+  validator: (value) {
+    if (value == null || vale.isEmpty) {
+      return 'Email cannot be empty';
+    } else if (!value.contains('@')){
+      return 'not Email format';
+    }
+    return null;
+  },
+  onSaved: (value) {
+    _email = value!;
+  },
+),
 
 
 
