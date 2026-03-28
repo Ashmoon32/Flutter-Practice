@@ -652,23 +652,56 @@ class ContainerDemo extends StatelessWidget {
 // ),
 
 
+// void main() {
+//   runApp(const ImageDemo());
+// }
+
+// class ImageDemo extends StatelessWidget {
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Image Demo"),
+//       ),
+//       body: Image.network("https://www.example.com/abc.jpg"),
+
+//       body: Image.file("/storage/img.jpeg"),
+//       body: Image.asset("../assets/img.jpeg"),
+//     ),
+//   }
+// }
+
 void main() {
   runApp(const ImageDemo());
 }
 
-class ImageDemo extends StatelessWidget {
+class ImageDemo extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Image Demo"),
+        title: const Text('Fade In Image'),
       ),
-      body: Image.network("https://www.example.com/abc.jpg"),
+      body: Center(
+        const Center(child: CircularProgressIndicator()),
+        child: FadeInImage.memoryNetwork(
+          placeholder: kTransparentImage,
+          image: 'https://www.example.con/abc.jpg',
+        ),
+      ),
 
-      body: Image.file("/storage/img.jpeg"),
-      body: Image.asset("../assets/img.jpeg"),
-    ),
+      body: Center(
+        child: FadeInImage.assetNetwork(
+          placeholder: '../assets/lodd.gif',
+          image: 'https://www.example.com/abc,jpg',
+        ),
+      ),
+      
+    );
   }
 }
+
+
+
+
 
 
 }
