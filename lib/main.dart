@@ -633,24 +633,42 @@ class ContainerDemo extends StatelessWidget {
 
 // *
 
-TextFormField(
-  decoration: const InputDecoration(
-    hintText: 'Email',
-    prefixIcon: Icon(Icons.email),
-  ),
-  validator: (value) {
-    if (value == null || vale.isEmpty) {
-      return 'Email cannot be empty';
-    } else if (!value.contains('@')){
-      return 'not Email format';
-    }
-    return null;
-  },
-  onSaved: (value) {
-    _email = value!;
-  },
-),
+// TextFormField(
+//   decoration: const InputDecoration(
+//     hintText: 'Email',
+//     prefixIcon: Icon(Icons.email),
+//   ),
+//   validator: (value) {
+//     if (value == null || vale.isEmpty) {
+//       return 'Email cannot be empty';
+//     } else if (!value.contains('@')){
+//       return 'not Email format';
+//     }
+//     return null;
+//   },
+//   onSaved: (value) {
+//     _email = value!;
+//   },
+// ),
 
+
+void main() {
+  runApp(const ImageDemo());
+}
+
+class ImageDemo extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Image Demo"),
+      ),
+      body: Image.network("https://www.example.com/abc.jpg"),
+
+      body: Image.file("/storage/img.jpeg"),
+      body: Image.asset("../assets/img.jpeg"),
+    ),
+  }
+}
 
 
 }
