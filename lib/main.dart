@@ -699,33 +699,78 @@ class ContainerDemo extends StatelessWidget {
 //   }
 // }
 
-class VideoDemo extends StatefulWidget {
-  _controller = VideoPlayerController.networkUrl("https://www.example.com/abc.mp4");
-  _controller = VideoPlayerController.file('file_path/video.mp4');
-  _controller = VideoPlayerController.asset('../assets/video.mp4');
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Play/Pause Video'),
-        ),
-        body: Center(
-          child: VideoPlayer(_controller),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                _controller.value.isPlaying ? _controller.pause() : _controller.play(),
-              });
-            },
-            child: Text(_controller.value.isPlaying ? 'Pause' : 'Play'),
-          ),
-        ),
-      ),
-    );
-  }
+//  class VideoDemo extends StatefulWidget {
+//   _controller = VideoPlayerController.networkUrl('https://www.example.com/video.mp4');
+//   _controller = VideoPlayerController.file('File_path/video.mp4');
+//   _controller = VideoPlayerController.asset('../assets/video.mp4');
+
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(title: const Text('Play/Pause Video'),
+//         ),
+//         body: Center (
+//           child: VideoPlayer(_controller),
+//           ElevatedButton(
+//             onPressed: () {
+//               setState(() {
+//                 _controller.value.isPlaying ? _controller.pause() : _controller.play(),
+//               });
+//             },
+//             child: Text(_controller.value.isPlaying ? 'Pause' : 'Play'),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+//  }
+
+bool b = false;
+void _changeMode() {
+  setState(() {
+    b = !b;
+  });
 }
 
+children: [
+  AnimatedContainer(
+    color: b ? Colors.teaAccent : Colors.blueAccent,
+    height: b ? 300.0 : 100.0,
+    duration: const Duration(seconds: 1),
+    child: Center(
+       child: const Text(
+      'Top',
+      color: b ? Colors.black : Colors.white,
+      fontSize: 30.0,
+      fontWeight: FontWeight.w200,
+    ),
+    textAlign: TextAlign.center,
+    ),
+  ),
 
+
+  AnimatedContainer(
+    color: b ? Colors.redAccent : Colors.orangeAccent,
+    height: b ? 100.0 : 300.0,
+    duration: Duration(seconds: 1),
+    child: Center(
+      child: Text(
+        'Bottom',
+        style: TextStyle(
+          color: b ? Colors.black : Colors.white,
+          fontSize: 30.0,
+          fontWeight: FontWeight.w200,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    ),
+  ),
+]
+
+floatinActionButton: FloatingActionButton(
+  onPressed: _changeMode(),
+  child: const Icon(Icons.change_circle),
+),
 
 
 
