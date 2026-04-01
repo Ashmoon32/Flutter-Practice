@@ -839,7 +839,20 @@ class ContainerDemo extends StatelessWidget {
 // ),
 
 // 2
-
-
+child: Container(
+  height: 100,
+  width: 100,
+  decoration: BoxDecoration(
+    shape: BoxShape.circle,
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey,
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0,3),
+      ),
+    ],
+  ),
+),
 
 }
