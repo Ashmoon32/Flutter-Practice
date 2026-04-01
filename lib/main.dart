@@ -772,57 +772,74 @@ class ContainerDemo extends StatelessWidget {
 //   child: const Icon(Icons.change_circle),
 // ),
 
-child: GestureDetector(
-  onTap: () {
-    Navigator.of(context).push(
-    MaterialPageRoute<void>(
-      builder: (BuildContext context){
-        return const DetailScreen();
-      },
-    ),
-  );
-  },
+// child: GestureDetector(
+//   onTap: () {
+//     Navigator.of(context).push(
+//     MaterialPageRoute<void>(
+//       builder: (BuildContext context){
+//         return const DetailScreen();
+//       },
+//     ),
+//   );
+//   },
 
-  child: Hero(
-    tag: _imageTag,
-    child: Container(
-      width: 100.0,
-      height: 100.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
-        color: Colors.blueAccent.shape700,
-      ),
-      child: const Icon(
-        Icons.camera_alt,
-        color: Colors.white,
-        size: 40,
-      ),
-    ),
-  ),
-),
+//   child: Hero(
+//     tag: _imageTag,
+//     child: Container(
+//       width: 100.0,
+//       height: 100.0,
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(12.0),
+//         color: Colors.blueAccent.shape700,
+//       ),
+//       child: const Icon(
+//         Icons.camera_alt,
+//         color: Colors.white,
+//         size: 40,
+//       ),
+//     ),
+//   ),
+// ),
 
-child: GestureDetector(
-  onTap: () {
-    Navigator.of(context).pop();
-  },
+// child: GestureDetector(
+//   onTap: () {
+//     Navigator.of(context).pop();
+//   },
 
-  child: Hero(
-    tag: _imageTag,
-    child: Container(
-      width: 300.0,
-      height: 300.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        color: Colors.redAccent,
-      ),
-      child: const Icon(
-        Icons.camera_alt,
-        color: Colors.white,
-        size: 150,
-      ),
-    ),
-  ),
-),
+//   child: Hero(
+//     tag: _imageTag,
+//     child: Container(
+//       width: 300.0,
+//       height: 300.0,
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(20.0),
+//         color: Colors.redAccent,
+//       ),
+//       child: const Icon(
+//         Icons.camera_alt,
+//         color: Colors.white,
+//         size: 150,
+//       ),
+//     ),
+//   ),
+// ),
+
+// 1
+// body: Container(
+//   height: 80,
+//   width: 260,
+//   color: Colors.blueGrey,
+//   alignment: Alignment.center,
+//   margin: EdgeInsets.only(top: 100),
+//   transform: Matrix4.rotationZ(-0.25),
+//   child: Text(
+//     "Container",
+//     style: TextStyle(color: Colors.white, fontSize: 25),
+//   ),
+// ),
+
+// 2
+
 
 
 }
